@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Question</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link type="text/tailwindcss" rel="stylesheet" href="../Style/Style.css">
+</head>
+<body class="bg-[var(--background-color)] min-h-screen flex flex-col justify-between">
+  <header class="sticky top-0 z-10 bg-[var(--background-color)] shadow-sm">
+    <div class="flex items-center p-4 justify-between">
+      <a href="#" aria-label="Back">
+        <i class="fas fa-arrow-left text-[var(--secondary-color)] text-xl"></i>
+      </a>
+      <h1 class="text-[var(--secondary-color)] text-xl font-bold text-center flex-1">Quiz Time!</h1>
+      <div class="w-7"></div>
+    </div>
+    <div class="px-4 pb-3">
+      <div class="flex items-center justify-between mb-1">
+        <p class="text-[var(--secondary-color)] text-sm font-medium">Question 1/5</p>
+        <p class="text-[var(--primary-color)] text-sm font-bold">20%</p>
+      </div>
+      <div class="h-2.5 rounded-full bg-[var(--accent-color)] overflow-hidden">
+        <div class="h-full rounded-full bg-[var(--primary-color)] transition-all duration-300 ease-out w-1/5"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow flex flex-col items-center justify-center p-6 space-y-8">
+    <h2 class="text-[var(--secondary-color)] text-3xl font-bold text-center max-w-md">
+      What is the capital city of the beautiful country known as France?
+    </h2>
+<div class="w-full max-w-md space-y-3">
+  <a href="Correct.html" class="block w-full rounded-xl border-2 border-[var(--accent-color)] bg-white px-5 py-4 text-lg font-semibold text-[var(--secondary-color)] text-center hover:bg-green-100 transition-all">
+    Paris
+  </a>
+  <a href="Wrong.html" class="block w-full rounded-xl border-2 border-[var(--accent-color)] bg-white px-5 py-4 text-lg font-semibold text-[var(--secondary-color)] text-center hover:bg-green-100 transition-all">
+    London
+  </a>
+  <a href="Wrong.html" class="block w-full rounded-xl border-2 border-[var(--accent-color)] bg-white px-5 py-4 text-lg font-semibold text-[var(--secondary-color)] text-center hover:bg-green-100 transition-all">
+    Berlin
+  </a>
+  <a href="Wrong.html" class="block w-full rounded-xl border-2 border-[var(--accent-color)] bg-white px-5 py-4 text-lg font-semibold text-[var(--secondary-color)] text-center hover:bg-green-100 transition-all">
+    Rome
+  </a>
+</div>
+
+  </main>
+
+  <footer class="sticky bottom-0 bg-[var(--background-color)] border-t border-[var(--accent-color)]">
+    <div class="flex justify-around items-center p-3">
+      <a class="flex flex-col items-center text-[var(--primary-color)]" href="#">
+        <i class="fas fa-home text-xl"></i>
+        <span class="text-xs font-medium">Home</span>
+      </a>
+      <a class="flex flex-col items-center text-gray-500 hover:text-[var(--primary-color)]" href="#">
+        <i class="fas fa-compass text-xl"></i>
+        <span class="text-xs font-medium">Discover</span>
+      </a>
+      <a class="flex flex-col items-center text-[var(--secondary-color)] -mt-8" href="#">
+        <div class="p-3 rounded-full bg-[var(--primary-color)] shadow-md">
+          <i class="fas fa-plus text-xl"></i>
+        </div>
+        <span class="text-xs font-medium mt-1">Create</span>
+      </a>
+      <a class="flex flex-col items-center text-gray-500 hover:text-[var(--primary-color)]" href="#">
+        <i class="fas fa-image text-xl"></i>
+        <span class="text-xs font-medium">Gallery</span>
+      </a>
+      <a class="flex flex-col items-center text-gray-500 hover:text-[var(--primary-color)]" href="#">
+        <i class="fas fa-user text-xl"></i>
+        <span class="text-xs font-medium">Profile</span>
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
