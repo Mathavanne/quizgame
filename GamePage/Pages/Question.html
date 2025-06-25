@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Question</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <title>Quiz Game</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link type="text/tailwindcss" rel="stylesheet" href="../Style/Style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&family=Spline+Sans:wght@400;500;700" rel="stylesheet" />
+  <link rel="stylesheet" href="../Style/Style.css">
 </head>
-<body class="bg-[var(--background-color)] min-h-screen flex flex-col justify-between">
-  <header class="sticky top-0 z-10 bg-[var(--background-color)] shadow-sm">
+<body class="bg-[var(--accent-color)] min-h-screen flex flex-col justify-between">
+  <header class="sticky top-0 z-10 bg-white shadow-sm">
     <div class="flex items-center p-4 justify-between">
       <a href="#" aria-label="Back">
         <i class="fas fa-arrow-left text-[var(--secondary-color)] text-xl"></i>
@@ -19,37 +22,23 @@
     </div>
     <div class="px-4 pb-3">
       <div class="flex items-center justify-between mb-1">
-        <p class="text-[var(--secondary-color)] text-sm font-medium">Question 1/5</p>
-        <p class="text-[var(--primary-color)] text-sm font-bold">20%</p>
+        <p id="question-counter" class="text-[var(--secondary-color)] text-sm font-medium">Question 1/5</p>
+        <p id="progress-percentage" class="text-[var(--primary-color)] text-sm font-bold">0%</p>
       </div>
-      <div class="h-2.5 rounded-full bg-[var(--accent-color)] overflow-hidden">
-        <div class="h-full rounded-full bg-[var(--primary-color)] transition-all duration-300 ease-out w-1/5"></div>
+      <div class="h-2.5 rounded-full bg-gray-200 overflow-hidden">
+        <div id="progress-bar" class="h-full rounded-full bg-[var(--primary-color)] transition-all duration-300 ease-out w-0"></div>
       </div>
     </div>
   </header>
 
   <main class="flex-grow flex flex-col items-center justify-center p-6 space-y-8">
-    <h2 class="text-[var(--secondary-color)] text-3xl font-bold text-center max-w-md">
-      What is the capital city of the beautiful country known as France?
-    </h2>
-<div class="w-full max-w-md space-y-3">
-  <a href="Correct.html" class="block w-full rounded-xl border-2 border-[var(--accent-color)] bg-white px-5 py-4 text-lg font-semibold text-[var(--secondary-color)] text-center hover:bg-green-100 transition-all">
-    Paris
-  </a>
-  <a href="Wrong.html" class="block w-full rounded-xl border-2 border-[var(--accent-color)] bg-white px-5 py-4 text-lg font-semibold text-[var(--secondary-color)] text-center hover:bg-green-100 transition-all">
-    London
-  </a>
-  <a href="Wrong.html" class="block w-full rounded-xl border-2 border-[var(--accent-color)] bg-white px-5 py-4 text-lg font-semibold text-[var(--secondary-color)] text-center hover:bg-green-100 transition-all">
-    Berlin
-  </a>
-  <a href="Wrong.html" class="block w-full rounded-xl border-2 border-[var(--accent-color)] bg-white px-5 py-4 text-lg font-semibold text-[var(--secondary-color)] text-center hover:bg-green-100 transition-all">
-    Rome
-  </a>
-</div>
-
+    <h2 id="question-text" class="text-[var(--secondary-color)] text-3xl font-bold text-center max-w-md">Loading question...</h2>
+    <div id="options-container" class="w-full max-w-md space-y-3"></div>
+    <p id="feedback" class="text-lg font-semibold text-center"></p>
   </main>
 
-  <footer class="sticky bottom-0 bg-[var(--background-color)] border-t border-[var(--accent-color)]">
+  <!-- Footer -->
+  <footer class="sticky bottom-0 bg-white border-t border-gray-200">
     <div class="flex justify-around items-center p-3">
       <a class="flex flex-col items-center text-[var(--primary-color)]" href="#">
         <i class="fas fa-home text-xl"></i>
@@ -75,5 +64,53 @@
       </a>
     </div>
   </footer>
+
+  <!-- Correct Modal -->
+  <div id="correctModal" class="fixed inset-0 bg-black/50 flex items-end justify-center p-4 z-50 hidden">
+    <div class="bg-white rounded-t-3xl shadow-2xl w-full max-w-md animate-celebrate overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-0 left-1/4 w-4 h-4 bg-yellow-400 rounded-full animate-confetti"></div>
+        <div class="absolute top-0 left-1/2 w-3 h-3 bg-pink-400 rounded-full animate-confetti"></div>
+        <div class="absolute top-0 left-3/4 w-5 h-5 bg-green-400 rounded-full animate-confetti"></div>
+        <div class="absolute top-0 left-1/3 w-4 h-4 bg-blue-400 rounded-full animate-confetti"></div>
+        <div class="absolute top-0 left-2/3 w-3 h-3 bg-purple-400 rounded-full animate-confetti"></div>
+      </div>
+      <div class="p-6 text-center">
+        <div class="flex justify-center mb-6">
+          <span class="material-icons-outlined text-6xl text-green-500">check_circle</span>
+        </div>
+        <h1 class="text-slate-900 text-3xl font-bold mb-3">Correct!</h1>
+        <p class="text-slate-600 text-lg mb-8">Great job! Let’s move on to the next one.</p>
+        <button onclick="nextQuestion()" class="w-full h-14 px-6 bg-[var(--primary-color)] rounded-full text-lg font-bold text-slate-900 hover:bg-yellow-400 transition">
+          Next Question <span class="material-icons-outlined ml-2">arrow_forward</span>
+        </button>
+      </div>
+      <div class="h-2 bg-[var(--primary-color)]"></div>
+    </div>
+  </div>
+
+  <!-- Wrong Modal -->
+  <div id="wrongModal" class="fixed inset-0 bg-black/30 flex items-end justify-center z-50 hidden">
+    <div class="flex flex-col w-full max-w-md rounded-t-3xl bg-white shadow-2xl">
+      <div class="flex items-center justify-center pt-3">
+        <div class="h-1.5 w-10 bg-gray-300 rounded-full"></div>
+      </div>
+      <div class="flex flex-col items-center px-6 pt-4 pb-6 text-center">
+        <div class="mb-4 h-16 w-16 rounded-full bg-red-600 text-white flex items-center justify-center">
+          <span class="material-symbols-rounded text-4xl">close</span>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-900">Incorrect Answer</h1>
+        <p class="text-lg mt-2 text-gray-600">Oops! That's not quite right.</p>
+        <div class="mt-4 bg-gray-100 p-4 w-full rounded-lg">
+          <p class="text-sm text-gray-600">The correct answer was:</p>
+          <p id="correctAnswerText" class="text-lg font-semibold text-green-600 mt-1">Answer</p>
+        </div>
+        <button onclick="nextQuestion()" class="mt-5 w-full h-14 px-6 bg-[var(--primary-color)] rounded-full text-lg font-bold text-slate-900 hover:bg-yellow-400 transition">
+          Next Question <span class="material-icons-outlined ml-2">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  </div>
+<script src="../Script/script.js"></script>
 </body>
 </html>
